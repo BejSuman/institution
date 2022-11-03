@@ -3,8 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AdminAuthController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\StateController;
 
-
+route::get('dbsync',[StateController::class,'dbSync']);
 
 Route::get('admin', [AdminAuthController::class, 'getLogin']);
 
