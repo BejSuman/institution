@@ -132,6 +132,4 @@ class StateController extends Controller
             $state->save();
         }
     }
-
-    
 }
