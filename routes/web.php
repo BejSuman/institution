@@ -10,7 +10,11 @@ use App\Http\Controllers\AdmissionController;
 // route::get('dbSync',[CountrieController::class,'dbSync']);
 // route::get('dbSync',[StateController::class,'dbSync']);
 
-route::get('admission',[AdmissionController::class,'admission']);
+route::get('admission', [AdmissionController::class, 'admission']);
+
+// --------------------------------------------
+// route::get('state', [AdmissionController::class, 'index']);
+// --------------------------------------------
 
 Route::get('admin', [AdminAuthController::class, 'getLogin']);
 
@@ -27,6 +31,4 @@ Route::group(['prefix' => 'admin'], function () {
     Route::group(['middleware' => ['adminAfterLogin']], function () {
         Route::get('dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
     });
-
-
 });

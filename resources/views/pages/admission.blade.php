@@ -1,11 +1,9 @@
 @extends('layouts.admin-template')
 
 @section('content')
-
-
     {!! showMessage() !!}
 
-    <div class="panel">
+    {{-- <div class="panel">
 
         <div class="panel-body">
             {{ Form::open(['url' => url('admin/add-company'), 'class' => 'row col-offset-md-3', 'id' => '']) }}
@@ -29,14 +27,7 @@
                     @enderror
                 </div>
 
-                {{-- <div class="col-sm-6 form-group">
-                    <label for="country" class="form-label">Country</label>
-                    <input type="text" class="form-control" name="country" id="country"
-                        placeholder="Enter Company Country">
-                    @error('country')
-                        <p class="text-danger">{{ $message }}</p>
-                    @enderror
-                </div> --}}
+
 
                 <div class="col-sm-6 form-group">
                     <label for="country" class="form-label">Country</label><br>
@@ -68,14 +59,7 @@
                     @enderror
                 </div>
 
-                {{-- <div class="col-sm-6 form-group">
-                    <label for="state" class="form-label">State</label>
-                    <input type="text" class="form-control" name="state" id="state"
-                        placeholder="Enter Company State">
-                    @error('state')
-                        <p class="text-danger">{{ $message }}</p>
-                    @enderror
-                </div> --}}
+
 
                 <div class="col-sm-6 form-group">
                     <label for="address" class="form-label">Address</label>
@@ -106,9 +90,63 @@
             </div>
             {{ Form::close() }}
         </div>
-    </div>
+    </div> --}}
 
 
+     {{-- *----------------------------------- --}}
+    {{-- <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td,
+        th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>State Name</th>
+            </tr>
+        </thead>
+        <tbody id="list_todo">
+            @foreach ($state as $item)
+                <tr>
+                    <td>{{ $item->id }}</td>
+                    <td>{{ $item->stateName }}</td>
+                </tr>
+            @endforeach
+        </tbody>
+
+
+    </table> --}}
+
+     {{-- *----------------------------------- --}}
+
+    {{-- <table>
+        <thead>
+            <th>ID</th>
+            <th>State Name</th>
+        </thead>
+        <tbody id="list_todo">
+            @foreach ($state as $item)
+                <td>{{$item->id}}</td>
+                <td>{{$item->stateName}}</td>
+            @endforeach
+        </tbody>
+    </table> --}}
+    {{-- *----------------------------------- --}}
 @endsection
 
 
