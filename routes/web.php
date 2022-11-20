@@ -1,11 +1,25 @@
 <?php
 
+use App\Http\Controllers\AboutController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AdminAuthController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CountrieController;
 use App\Http\Controllers\Admin\StateController;
 use App\Http\Controllers\AdmissionController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\HomeController;
+
+
+
+
+Route::get('/',[HomeController::class,'index']);
+Route::get('/about',[AboutController::class,'index']);
+Route::get('/gallery',[GalleryController::class,'index']);
+Route::get('/contact',[ContactController::class,'index']);
+
+
 
 // route::get('dbSync',[CountrieController::class,'dbSync']);
 // route::get('dbSync',[StateController::class,'dbSync']);
