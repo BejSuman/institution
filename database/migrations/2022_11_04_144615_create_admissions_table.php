@@ -15,6 +15,8 @@ class CreateAdmissionsTable extends Migration
     {
         Schema::create('admissions', function (Blueprint $table) {
             $table->id();
+            $table->string('student_name');
+            $table->integer('student_phone_number');
             $table->timestamps();
         });
     }

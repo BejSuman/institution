@@ -25,6 +25,7 @@ Route::get('/contact',[ContactController::class,'index']);
 // route::get('dbSync',[StateController::class,'dbSync']);
 
 route::get('admission', [AdmissionController::class, 'admission']);
+route::post('admission-store', [AdmissionController::class, 'store']);
 
 // --------------------------------------------
 // route::get('state', [AdmissionController::class, 'index']);

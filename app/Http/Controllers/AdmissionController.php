@@ -20,4 +20,17 @@ class AdmissionController extends Controller
     //     return view('pages.admission',['state'=>State::orderBy('id','DESC')->get()]);
     // }
     // --------------------------------------------
+    public function store(Request $request){
+
+        dd($request->post('student_name'));
+        $student = new Admission();
+
+        $student->student_name = $request->post('student_name');
+        $student->student_phone_number = $request->post('student_phone_number');
+
+        $student->save();
+        // return redirect()->back()->withSuccess("Submit Successfully");
+        return response()->json(['bool'=>true]);
+
+    }
 }
