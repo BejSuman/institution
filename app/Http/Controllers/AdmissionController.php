@@ -20,9 +20,9 @@ class AdmissionController extends Controller
     //     return view('pages.admission',['state'=>State::orderBy('id','DESC')->get()]);
     // }
     // --------------------------------------------
-    public function store(Request $request){
+    public function store(Request $request): \Illuminate\Http\JsonResponse
+    {
 
-        dd($request->post('student_name'));
         $student = new Admission();
 
         $student->student_name = $request->post('student_name');

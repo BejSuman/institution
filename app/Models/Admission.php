@@ -2,12 +2,15 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 
 class Admission extends Model
 {
-    use HasFactory;
+    public function __construct()
+    {
+    }
+    protected $table = 'admissions';
     protected $fillable = [
         'student_name',
         'student_phone_number',
