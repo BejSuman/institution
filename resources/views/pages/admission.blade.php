@@ -15,41 +15,41 @@
     <div class="container-fluid py-5">
         <div class="container bg-light p-4 border border-radius">
             {{-- {{ Form::open(['url' => url('admission'), 'class' => 'row col-offset-md-3', 'id' => '']) }} --}}
-            <form action="{{ url('') }}" class="row col-offset-md-3">
+            <form action="{{ url('') }}" class="row col-offset-md-3" id="form">
                 @csrf
                 <div class="row">
                     <div class="col-sm-6 form-group">
                         <label for="student_name" class="form-label">Student Name</label>
                         <input type="text" class="form-control" name="student_name" id="student_name"
-                            placeholder="Enter sduden tname">
+                            placeholder="Enter student name">
                         @error('student_name')
                             <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
 
-                    {{-- <div class="col-sm-6 form-group">
+                    <div class="col-sm-6 form-group">
                         <label for="gargent_name" class="form-label">Gargent Name</label>
-                        <input type="text" class="form-control" name="gargent_name" id="gargent_name"
+                        <input type="text" class="form-control" name="guardians_name" id="gargent_name"
                             placeholder="Enter Gargent Name">
-                        @error('gargent_name')
+                        @error('guardians_name')
                             <p class="text-danger">{{ $message }}</p>
                         @enderror
-                    </div> --}}
+                    </div>
 
                     <div class="col-sm-6 form-group">
                         <label for="student_phone_number" class="form-label">Student Phone Number</label>
-                        <input type="tel" class="form-control" name="student_phone_number" id="student_phone_number"
+                        <input type="number" class="form-control" name="student_phone_number" id="student_phone_number"
                             placeholder="Enter Student phone number">
                         @error('student_phone_number')
                             <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
 
-                    {{-- <div class="col-sm-6 form-group">
+                    <div class="col-sm-6 form-group">
                         <label for="gargent_phone_number" class="form-label">Gargent Phone Number</label>
-                        <input type="tel" class="form-control" name="gargent_phone_number" id="gargent_phone_number"
+                        <input type="tel" class="form-control" name="guardians_phone_number" id="gargent_phone_number"
                             placeholder="Enter Gargent phone number">
-                        @error('phone')
+                        @error('guardians_phone_number')
                             <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
@@ -65,9 +65,9 @@
 
                     <div class="col-sm-6 form-group">
                         <label for="gargent_whatsapp_number" class="form-label">Gargent WhatsApp Number</label>
-                        <input type="tel" class="form-control" name="gargent_whatsapp_number"
+                        <input type="tel" class="form-control" name="guardians_whatsapp_number"
                             id="gargent_whatsapp_number" placeholder="Enter Gargent WhatsApp Number">
-                        @error('gargent_whatsapp_number')
+                        @error('guardians_whatsapp_number')
                             <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
@@ -130,35 +130,35 @@
 
                     <div class="col-sm-6 form-group">
                         <label for="curent_cource" class="form-label">Current School/Insttution</label>
-                        <input type="text" class="form-control" name="curent_cource" id="curent_cource"
+                        <input type="text" class="form-control" name="current_course" id="curent_cource"
                             placeholder="Enter Student curent_cource">
-                        @error('curent_cource')
+                        @error('current_course')
                             <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
 
                     <div class="col-sm-6 form-group">
                         <label for="cource" class="form-label">Cource Name</label>
-                        <input type="text" class="form-control" name="cource" id="cource"
+                        <input type="text" class="form-control" name="course" id="cource"
                             placeholder="Cource Name">
-                        @error('cource')
+                        @error('course')
                             <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
 
                     <div class="col-sm-6 form-group">
                         <label for="cource_duretion" class="form-label">Cource Duration</label><br>
-                        <select name="cource_duretion" id="cource_duretion" class="form-control">
+                        <select name="course_duration" id="cource_duretion" class="form-control">
                             <option value="" selected disabled>Setect Cource Duration</option>
                             <option value="6">6 Month</option>
                             <option value="12">12 Month</option>
                             <option value="18">18 Month</option>
                             <option value="24">24 Month</option>
                         </select>
-                        @error('cource_duretion')
+                        @error('course_duration')
                             <p class="text-danger">{{ $message }}</p>
                         @enderror
-                    </div> --}}
+                    </div>
 
 
 
@@ -235,10 +235,13 @@
 @endsection
 @section('script')
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
     <script>
         $(document).ready(function() {
+
             $("form").on('submit', function(e) {
                 e.preventDefault();
+
                 let form_data = $('form').serializeArray();
                 // console.log(form_data);
 
@@ -253,6 +256,7 @@
                     success: function(res) {
                         $(".ajax-res").text("Your form Submit successfully");
                         $(".save_btn").removeClass("disabled").text("Submit");
+                        $("form")[0].reset();
                     },
                 });
 

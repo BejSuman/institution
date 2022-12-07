@@ -26,7 +26,19 @@ class AdmissionController extends Controller
         $student = new Admission();
 
         $student->student_name = $request->post('student_name');
+        $student->guardians_name = $request->post('guardians_name');
         $student->student_phone_number = $request->post('student_phone_number');
+        $student->guardians_phone_number = $request->post('guardians_phone_number');
+        $student->student_whatsapp_number = $request->post('student_whatsapp_number');
+        $student->guardians_whatsapp_number = $request->post('guardians_whatsapp_number');
+        $student->country = $request->post('country');
+        $student->state = $request->post('state');
+        $student->address = $request->post('address');
+        $student->pin = $request->post('pin');
+        $student->last_exam = $request->post('last_exam');
+        $student->current_course = $request->post('current_course');
+        $student->course = $request->post('course');
+        $student->course_duration = $request->post('course_duration');
 
         $student->save();
         // return redirect()->back()->withSuccess("Submit Successfully");
