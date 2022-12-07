@@ -24,7 +24,7 @@
                  </div>
                  <a href="{{ asset('/contact') }}" class="nav-item nav-link">Contact</a>
              </div>
-             <a href="{{ asset('#') }}" class="btn btn-primary px-4">Join Class</a>
+             <a href="{{ asset('admission') }}" class="btn btn-primary px-4">Admission Now</a>
          </div>
      </nav>
  </div>
