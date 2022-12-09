@@ -15,16 +15,17 @@
     <div class="container-fluid py-5">
         <div class="container bg-light p-4 border border-radius">
             {{-- {{ Form::open(['url' => url('admission'), 'class' => 'row col-offset-md-3', 'id' => '']) }} --}}
-            <form action="{{ url('') }}" class="row col-offset-md-3" id="form">
+            {!! Form::open(['url' => '','role' => 'form', 'class'=>'row col-offset-md-3', 'id' => 'admissionForm' ]) !!}
                 @csrf
                 <div class="row">
                     <div class="col-sm-6 form-group">
                         <label for="student_name" class="form-label">Student Name</label>
                         <input type="text" class="form-control" name="student_name" id="student_name"
-                            placeholder="Enter student name">
+                            placeholder="Enter student name" required data-msg-required="Please enter student name.">
                         @error('student_name')
                             <p class="text-danger">{{ $message }}</p>
                         @enderror
+                        <span class="validation-errors"></span>
                     </div>
 
                     <div class="col-sm-6 form-group">
@@ -34,6 +35,7 @@
                         @error('guardians_name')
                             <p class="text-danger">{{ $message }}</p>
                         @enderror
+                        <span class="validation-errors"></span>
                     </div>
 
                     <div class="col-sm-6 form-group">
@@ -43,6 +45,7 @@
                         @error('student_phone_number')
                             <p class="text-danger">{{ $message }}</p>
                         @enderror
+                        <span class="validation-errors"></span>
                     </div>
 
                     <div class="col-sm-6 form-group">
@@ -52,6 +55,7 @@
                         @error('guardians_phone_number')
                             <p class="text-danger">{{ $message }}</p>
                         @enderror
+                        <span class="validation-errors"></span>
                     </div>
 
                     <div class="col-sm-6 form-group">
@@ -166,14 +170,14 @@
                         <button type="submit" class="btn btn-primary px-3 save_btn">Save</button>
                     </div>
 
+
                     <div class="col-sm-12 form-group">
                         <p class="ajax-res"></p>
                     </div>
 
                 </div>
 
-                {{-- {{ Form::close() }} --}}
-            </form>
+            {{ Form::close() }}
         </div>
     </div>
 
@@ -234,49 +238,33 @@
     {{-- *----------------------------------- --}}
 @endsection
 @section('script')
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
+    <link href="{{ URL::asset('assets/admin/js/jquery-validation/jquery-validate.css') }}" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="{{ URL::asset('assets/admin/js/jquery-validation/jquery.validate.js') }}"></script>
+    <script type="text/javascript" src="{{ URL::asset('assets/admin/js/jquery-validation/additional-methods.js') }}"></script>
     <script>
         $(document).ready(function() {
 
-            $("#form").validate({
-                rules: {
-                    student_name: "required",
-                    student_phone_number: {
-                        required: true,
-                        maxlength: 10,
-                    },
-
+            $('#admissionForm').validate({
+                ignore: [],
+                errorPlacement: function errorPlacement(error, element) {
+                    $(element).parents('div.form-group').find('span.validation-errors').append(error);
                 },
-                messages: {
-                    student_name: {
-                        required: "The Name Field is required",
-                        maxlength: "The Name cannot be more than 30 characters",
-                    },
-                }
+                onfocusout: false,
+                highlight: function (element, errorClass) {
+                    if ($(element).hasClass('select-2')) {
+                        $(element).next('.select2-container').addClass(errorClass);
+                    } else {
+                        $(element).addClass(errorClass);
+                    }
+                },
+                unhighlight: function (element, errorClass) {
+                    if ($(element).hasClass('select-2')) {
+                        $(element).next('.select2-container').removeClass(errorClass);
+                    } else {
+                        $(element).removeClass(errorClass);
+                    }
+                },
             });
-
-            // $("form").on('submit', function(e) {
-            //     e.preventDefault();
-
-            //     let form_data = $('form').serializeArray();
-            //     // console.log(form_data);
-
-            //     $.ajax({
-            //         url: "admission-store",
-            //         type: "POST",
-            //         data: form_data,
-            //         dataType: "json",
-            //         beforeSend: function() {
-            //             $(".save_btn").addClass("disabled").text("Loding...");
-            //         },
-            //         success: function(res) {
-            //             $(".ajax-res").text("Your form Submit successfully");
-            //             $(".save_btn").removeClass("disabled").text("Submit");
-            //             $("form")[0].reset();
-            //         },
-            //     });
-            // });
         });
     </script>
-@show
+@endsection
