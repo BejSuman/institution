@@ -239,43 +239,44 @@
     <script>
         $(document).ready(function() {
 
-            $("form").on('submit', function(e) {
-                e.preventDefault();
-
-                let form_data = $('form').serializeArray();
-                // console.log(form_data);
-
-                $.ajax({
-                    url: "admission-store",
-                    type: "POST",
-                    data: form_data,
-                    dataType: "json",
-                    beforeSend: function() {
-                        $(".save_btn").addClass("disabled").text("Loding...");
+            $("#form").validate({
+                rules: {
+                    student_name: "required",
+                    student_phone_number: {
+                        required: true,
+                        maxlength: 10,
                     },
-                    success: function(res) {
-                        $(".ajax-res").text("Your form Submit successfully");
-                        $(".save_btn").removeClass("disabled").text("Submit");
-                        $("form")[0].reset();
+
+                },
+                messages: {
+                    student_name: {
+                        required: "The Name Field is required",
+                        maxlength: "The Name cannot be more than 30 characters",
                     },
-                });
-
-                // $.ajax({
-                //     url: "{{ url('admission-store') }}",
-                //     type: "post",
-                //     data: form_data,
-                //     dataType: "json",
-                //     beforeSend: function() {
-                //         $(".save_btn").addClass('disabled').text("Loading...");
-                //     },
-                //     success: function(res) {
-                //         // $('.ajax-res').text('Your form Submit successfully');
-                //         $(".save_btn").removeClass('disabled').text("Submit");
-                //     }
-                // });
-
-
+                }
             });
+
+            // $("form").on('submit', function(e) {
+            //     e.preventDefault();
+
+            //     let form_data = $('form').serializeArray();
+            //     // console.log(form_data);
+
+            //     $.ajax({
+            //         url: "admission-store",
+            //         type: "POST",
+            //         data: form_data,
+            //         dataType: "json",
+            //         beforeSend: function() {
+            //             $(".save_btn").addClass("disabled").text("Loding...");
+            //         },
+            //         success: function(res) {
+            //             $(".ajax-res").text("Your form Submit successfully");
+            //             $(".save_btn").removeClass("disabled").text("Submit");
+            //             $("form")[0].reset();
+            //         },
+            //     });
+            // });
         });
     </script>
 @show
