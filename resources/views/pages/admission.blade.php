@@ -326,21 +326,7 @@
                     course_duration: "Please Select Cource Duration",
                 },
                 // submitHandler: function() {
-
-                //     $.ajax({
-                //         url: "admission-store",
-                //         type: "POST",
-                //         data: form_data,
-                //         dataType: "json",
-                //         beforeSend: function() {
-                //             $(".save_btn").addClass("disabled").text("Loding...");
-                //         },
-                //         success: function(res) {
-                //             $(".ajax-res").text("Your form Submit successfully");
-                //             $(".save_btn").removeClass("disabled").text("Submit");
-                //             $("form")[0].reset();
-                //         },
-                //     });
+                //
                 // }
             })
 
